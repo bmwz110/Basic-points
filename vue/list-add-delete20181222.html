@@ -1,8 +1,10 @@
-<!-- 1.利用vue的mvvm的特性，绑定用户输入的内容和展示在列表的内容。
+<!-- 
+ 1.利用vue的mvvm的特性，绑定用户输入的内容和展示在列表的内容，回车展示内容。
 
  2.用户勾选表示已完成，通过动态修改样式来标识已完成。
 
- 3.用户点击按钮“delete”，通过v-show来控制任务隐藏。-->
+ 3.用户点击按钮“delete”，通过v-show来控制任务隐藏。
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +56,65 @@
                 /*此处item也可使用index，同时函数内语句应变为this.list[index].show = false.
                 上文div v-for语句应变为item in list应变为(item.index) in list*/
                    item.show = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+<!--*************************************************************-->
+<!--*************************************************************-->
+<!--*************************************************************-->
+
+
+<!-- 
+    1. 按add按钮，新增列表项
+    2. 按delete按钮，隐藏对应项（要求使用v-show属性）
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vue test.my</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--
+           需注意，若使用task.show，
+           则：
+           1. 只对最后一个按钮起作用
+           2. 其他项的delete按钮仅会修改对应项的状态为false，而不会真正隐藏
+           3. 隐藏所有项后，按下add按钮，所有项（包括隐藏项）会全部显示
+           
+           原因：只识别最后一项的show状态，若为true，则显示所有，若为false，则隐藏所有；
+       -->
+       <div v-show="task.show" v-for="(item,index) in list">
+           <span>{{item}}</span>
+           <button v-on:click="del(index)">delete</button>
+       </div>
+       <button v-on:click="add">add</button>
+    </div>
+
+    <script>
+        var vm = new Vue ({
+            el: "#app",
+            data: {
+               list: [],
+               i: 0
+            },
+            methods: {
+                del:function(index) {
+                   this.list[index].show = false;
+                },
+                add:function() {
+                   this.task = {
+                       content: this.i++,
+                       show: true
+                   };
+                   this.list.push(this.task);
                 }
             }
         });
