@@ -1,0 +1,62 @@
+<!-- 1.利用vue的mvvm的特性，绑定用户输入的内容和展示在列表的内容。
+
+ 2.用户勾选表示已完成，通过动态修改样式来标识已完成。
+
+ 3.用户点击按钮“delete”，通过v-show来控制任务隐藏。-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vue test</title>
+  <style>
+      .finish {text-decoration: line-through;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-on:keydown.enter="add" type="text" v-model="task.content" placeholder="编写任务">
+        <div>
+            <div v-show="item.show" v-for="item in list">
+                <input v-on:click="change(item)" v-bind:checked="item.finished" type="checkbox">
+                <span v-bind:class="{'finish':item.finished}">{{item}}</span>
+                <button v-on:click="remove(item)">delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue ({
+            el: "#app",
+            data: {
+                task: {
+                    content: "",
+                    finished: false,
+                    show: true
+                },
+                list: []
+            },
+            methods: {
+                add:function() {
+                    this.list.push(this.task);
+                    this.task = {
+                        content: "",
+                        finished: false,
+                        show: true
+                    };
+                },
+
+                change:function(item) {
+                    this.list[item].finished = !this.list[item].finished;
+                },
+
+                remove:function(item) {  
+                /*此处item也可使用index，同时函数内语句应变为this.list[index].show = false.
+                上文div v-for语句应变为item in list应变为(item.index) in list*/
+                   item.show = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
