@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Traversal of binary tree</title>
+    </head>
+    <body>
+        <script>
+            var res = [];
+
+            //三种遍历都是：逆时针贴着二叉树的外缘移动
+            //前序遍历
+            //从二叉树的根节点开始，然后左子树，然后右子树
+            function clr(obj) {
+                if (obj != null) {
+                    res.push(obj.name);
+                    clr(obj.left);
+                    clr(obj.right);
+                }
+            }
+            clr(tree);
+
+            //中序遍历
+            //从左子树开始，然后根节点，然后到右子树
+            function lcr(obj) {
+                if (obj != null) {
+                    lcr(obj.left);
+                    res.push(obj.name);
+                    lcr(obj.right);
+                }
+            }
+            lrc(tree);
+
+            //后序遍历
+            //从左子树开始，然后右子树，最后根节点
+            function lrc(obj) {
+                if (obj != null) {
+                    lrc(obj.left);
+                    lrc(obj.right);
+                    res.push(obj.name);
+                }
+            }
+            lrc(tree);
+        </script>
+    </body>
+</html>
+
