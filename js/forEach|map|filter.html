@@ -1,0 +1,36 @@
+<!--.forEach()、.map()、.filter()的使用区别-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ytf-8">
+        <title>Training Days</title>
+    </head>
+    <body>
+        <script>
+            const Numbers = [375, 200, 3.14, 7, 13, 852];
+
+            //.forEach()
+            //此处不能使用item = () => {}，这样相当于把函数赋给item
+            //此处的item => {}是作为回调函数赋给forEach方法（对象中的函数叫做方法）
+            Numbers.forEach(item => {
+                console.log(item);
+            });
+
+            //.map()
+            //the major difference between .forEach() and .map() is that .map() returns a new array.
+            const newNumbers1 = Numbers.map(number => {
+                return number*10;
+            });
+            console.log(newNumbers1);
+
+            //.filter()
+            //Like .map(), .filter() returns a new array. 
+            //However, .filter() returns an array of elements after filtering out certain elements from the original array.
+            const newNumbers2 = Numbers.filter(number => {
+                return number > 100;
+            });
+            console.log(newNumbers2);
+        </script>
+    </body>
+</html>
