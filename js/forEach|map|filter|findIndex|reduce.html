@@ -1,4 +1,4 @@
-<!--.forEach()、.map()、.filter()的使用区别-->
+<!--.forEach()\.map()、.filter()、.findIndex()、.reduce()的使用区别-->
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +31,20 @@
                 return number > 100;
             });
             console.log(newNumbers2);
+
+            //.findIndex()
+            //输出第一个满足要求的数组项的索引
+            const index = Numbers.findIndex(item => {
+                return item < 300;
+            });
+            console.log(index);
+
+            //.reduce()
+            //累加
+            const sum = Numbers.reduce((accumulator,currentValue) => {
+                return accumulator + currentValue;
+            },1000000);
+            console.log(sum);
         </script>
     </body>
 </html>
