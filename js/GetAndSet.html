@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Get and Set</title>
+    </head>
+    <body>
+        <script>
+            const fun1 = {
+                _num1: 100,
+                say1: function(){
+                    if(typeof(this._num1) === 'number') {
+                        return 'The number is ' + this._num1
+                    } else {
+                        return "It's not a number!"
+                    }
+                }
+            };
+            //普通函数调用必须加()，否则返回的是函数体内容
+            console.log(fun1.say1); //f() {if(typeof(this...energy level"}
+            console.log(fun1.say1()); //The number is 100
+
+            //get和set
+            //get为获取操作，必须有返回值
+            //set为修改操作，不必有返回值
+            const fun2 = {
+                _num2: 100,
+                get say2() {
+                    if(typeof(this._num2) === 'number') {
+                        return 'The number is ' + this._num2
+                    } else {
+                        return "It's not a number!"
+                    }
+                },
+
+                set say2(newNum) {
+                    if (newNum >= 0) {
+                        this._num2 = newNum;
+                    } else {
+                        console.log("some error!");
+                    }
+                }
+            };
+            console.log(fun2.say2); //The number is 100
+            fun2.say2 = 30;
+            console.log(fun2.say2); //The number is 30
+
+        </script>
+    </body>
+</html>
