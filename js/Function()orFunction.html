@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+    </head>
+    <body>
+        <script>
+            let tempObj = {
+                _num: 22,
+                get num() {
+                    return this._num;
+                }
+            };
+            //此处使用tempObj.num()相当于num()先执行后返回22，再执行tempObj.22，因此导致错误
+            //函数()实际上，对于有return语句的函数，它等同于函数的返回值；对没有return语句的函数而言，它等同于执行一次函数
+            //正确应写为:
+            //console.log(tempObj.num);  // 22
+            console.log(tempObj.num());  //tempObj.num is not a function
+        </script>
+    </body>
+</html>
