@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ArrowFunction-this</title>
+    </head>
+    <body>
+        <script>
+            var num = 2;
+
+            //一般函数是在”执行时绑定“，当运行obj.say()时，this被绑定指向obj
+            //所以本函数中的this指向最近的对象obj1
+            let obj1 = {
+                num: 1,
+                say() {
+                    console.log(this.num); 
+                }
+            };
+            obj1.say(); // 1
+
+            //作为方法的箭头函数恒指向window
+            let obj2 = {
+                num: 1,
+                say: () => {
+                    console.log(this.num); 
+                }
+            };
+            obj2.say(); // 2
+
+            //
+            let obj3 = {
+                num: 1,
+                test: {
+                    num: 3,
+                    say: () => {
+                        console.log(this.num); 
+                    }
+                }
+            };
+            obj3.test.say(); // 2
+        </script>
+    </body>
+</html>
