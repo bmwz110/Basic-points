@@ -1,0 +1,25 @@
+<!--从大到小排序-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sort</title>
+    </head>
+    <body>
+        <script>
+            const years = [2011, 2018, 1922];
+
+            //箭头函数不加{}时，默认带有return效果
+            const sortYears1 = arr => arr.sort((x, y) => y - x);
+
+            //箭头函数加{}时，需要写出return关键字
+            const sortYears2 = arr => {
+                return arr.sort((x, y) => y - x)
+            };
+
+            console.log(sortYears1(years));  //[2018,2011,1922]
+            console.log(sortYears2(years));  //[2018,2011,1922]
+
+        </script>
+    </body>
+</html>
