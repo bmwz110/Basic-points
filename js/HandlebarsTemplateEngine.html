@@ -1,0 +1,33 @@
+<!--Handlebars模版引擎-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Chore Door</title>
+        <!--导入handlerbars包-->
+        <script src="handlebars.min.js"></script>  
+        <script id="name" type="text/template">
+            We are {{name}}. 
+            And you are {{name}}, too!!
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Handlebar Expressions</h1>
+            <div id="area">
+            </div>
+            <div class="blinker">|</div>
+            </div>  
+        <script>
+            const source = document.getElementById("name").innerHTML; //1. 将原始装甲保存为source
+            const template = Handlebars.compile(source); //2. 解析编译原始装甲中的显示屏模块
+            const context = {
+                name: "bmwz110"
+            };  //3. 设置显示屏模块的内容
+            const compileHtml = template(context);  //4. 将所设置的内容导入装甲
+            const newText = document.getElementById("area");  //5. 找到战斗区域
+            newText.innerHTML = compileHtml;  //6. 装甲进入战斗
+
+        </script>
+    </body>
+</html>
