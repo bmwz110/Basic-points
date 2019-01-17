@@ -20,11 +20,11 @@
             </div>  
         <script>
             const source = document.getElementById("name").innerHTML; //1. 将原始装甲保存为source
-            const template = Handlebars.compile(source); //2. 解析编译原始装甲中的显示屏模块
+            const template = Handlebars.compile(source); //2. 编译原始装甲中的显示屏模块,将结果存入装备信息库
             const context = {
                 name: "bmwz110"
             };  //3. 设置显示屏模块的内容
-            const compileHtml = template(context);  //4. 将所设置的内容导入装甲
+            const compileHtml = template(context);  //4. 使用装备信息库-将所设置的内容导入装甲
             const newText = document.getElementById("area");  //5. 找到战斗区域
             newText.innerHTML = compileHtml;  //6. 装甲进入战斗
 
