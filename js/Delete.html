@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+    </head>
+
+    <body>
+        <script>
+            var obj = {a:1, b:2, c:3};
+            console.log(delete obj.b);   //true
+            console.log(obj);   //{a:1, c:3}
+            //delete只能删除自有属性，无法删除继承属性。
+            //删除继承属性需要到原型对象中去删除，并对所有继承自该原型的对象造成影响。
+            //当delete删除成功，即目标属性存在且删除成功时，返回true。
+        </script>
+    </body>
+</html>
