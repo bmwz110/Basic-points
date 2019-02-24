@@ -1,0 +1,44 @@
+
+<!--Promise(ES6)的异步操作-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Promise Test</title>
+  </head>
+  <body>
+    <script>
+      const inventory = {
+        sunglasses: 10,
+        pants: 1088,
+        bags: 1344
+      };
+
+      const checkInventory = (order) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                //item[0]为order的属性名，item[1]为order的属性值，遍历order数组，若其每一项的属性值都<inventory对应的属性值，则返回true
+                let inStock = order.every(item => inventory[item[0]] >= item[1]);
+                if (inStock) {
+                    resolve(`Thank you. Your order was successful.`);
+                } else {
+                    reject(`We're sorry. Your order could not be completed because some items are sold out.`);
+                }
+            }, 2000);
+        })
+      };
+
+      const order = [['sunglasses', 100], ['bags', 200]];
+
+      const handleSuccess = resolvedValue => {
+        console.log(resolvedValue);
+      };
+
+      const handleFailure = rejectionValue => {
+        console.log(rejectionValue);
+      };
+      //then总是取前一项的返回值作为其参数
+      checkInventory(order).then(handleSuccess, handleFailure);
+    </script>
+  </body>
+</html>
