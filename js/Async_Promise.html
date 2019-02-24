@@ -39,6 +39,8 @@
       };
       //then总是取前一项的返回值作为其参数
       checkInventory(order).then(handleSuccess, handleFailure);
+      //等价于:
+      checkInventory(order).then(handleSuccess).catch(handleFailure);
     </script>
   </body>
 </html>
