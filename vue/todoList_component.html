@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>todoist</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div>
+        <input type="text" v-model="inputValue"/>
+        <button v-on:click="handleBtnClick">Add</button>
+      </div>
+      <ul>
+        <todo-item :content="item"
+                   :index="index"
+                   v-for="(item, index) in list"
+                   @delete="handleItemDelete">
+        </todo-item>
+      </ul>
+    </div>
+
+    <script>
+      // 设置全局组件
+      // Vue.component("TodoItem", {
+      //   props: ['content'],
+      //   template: "<li>{{content}}</li>",
+      // })
+
+      // 设置局部组件
+      const TodoItem = {
+        props: ['content', 'index'],
+        template: "<li @click='handleItemClick'>{{content}}</li>",
+        methods: {
+          handleItemClick: function() {
+            this.$emit("delete", this.index);
+          }
+        }
+      }
+
+      const app = new Vue({
+        el: '#root',
+        // 注册局部组件
+        components: {
+          TodoItem: TodoItem
+        },
+        data: {
+          list: [],
+          inputValue: ''
+        },
+        methods: {
+          handleBtnClick: function() {
+            this.list.push(this.inputValue);
+            this.inputValue = '';
+          },
+          handleItemDelete: function(index) {
+            this.list.splice(index,1);
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
