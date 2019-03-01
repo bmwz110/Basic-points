@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-for="(item, index) of list"
+         :key="item.id">
+        {{item.text}} ---- {{index}}
+    </div>
+  </div>
+  <script>
+    // Vue里不能直接通过下标的形式对数组/对象进行修改
+    // 例如：vm.list[4] = {id="002", text:"2"}，内容虽然被修改，但是页面不会响应改变
+    //
+    // 
+    // 1.改变数组/对象引用地址
+    // 例如：vm.list = [{改变后list的完整内容}]
+    //      "vm.对象.属性 =  新值"
+    //      vm.对象 = {改变后对象的完整内容}
+    //
+    // 2.数组方法
+    // push 向末尾增加一项，返回新的长度值
+    // pop 删除最后一项，返回被删除项
+    // shift 删除第一项，返回被删除项
+    // unshift 向头部添加项，返回新的长度值
+    // splice 截取，返回被删除项
+    // sort 排序
+    // reverse 颠倒数组元素顺序
+    //
+    // 3.使用Vue.set(vm.对象/数组, "属性名"/数组位置, "属性值"/值)
+    //   或 vm.$set(vm.对象/数组, "属性名"/数组位置, "属性值"/值)
+
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        list: [{
+          id: "010120201",
+          text: "hello"
+        }, {
+          id: "010120202",
+          text: "Dell"
+        }, {
+          id: "010120203",
+          text: "Lee"
+        }]
+      }
+    })
+  </script>
+</body>
+</html>
+
+
