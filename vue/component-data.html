@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+     <table>
+       <tbody>
+          <!--
+            这里使用<tr is="row"></tr>（模式1）
+            而非直接使用子组件<row></row>（模式2）
+            是因为tbody要求下属元素必须为tr，若使用（模式2），则会造成无法识别
+          -->
+          <tr is="row"></tr>
+          <tr is="row"></tr>
+          <tr is="row"></tr>
+       </tbody>
+     </table>
+  </div>
+  <script>
+    Vue.component('row', {
+      //Vue实例中的data不能直接设置内容，必须以函数形式返回内容
+      //这样设计的目的是让每一个子组件都拥有一个独立的数据存储
+      //以避免多个子组件互相影响
+      data: function() {
+        return {
+          content: "this is content"
+        }
+      },
+      template: '<tr><td>{{content}}</td></tr>'
+    })
+
+    var vm = new Vue({
+      el: '#root'
+    })
+    
+  </script>
+</body>
+</html>
+
+
