@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{fullName}}
+    {{age}}
+  </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          firstName: "Dell",
+          lastName: "Lee",
+          age: 28
+        },
+        //watch和computed都具备缓存的机制
+        //即在第一次运行后，对不相关数据进行改变，渲染时不会触发计算过程，而是使用缓存值
+        //但watch语法相较于computed语法更复杂，一般功能相同的情况下，应优先使用computed
+
+        //侦听器方法
+        // watch: {
+        //   firstName: function() {
+        //     console.log("计算了一次");
+        //     this.fullName = this.firstName + " " + this.lastName;
+        //   },
+        //   lastName: function() {
+        //     console.log("计算了一次");
+        //     this.fullName = this.firstName + " " + this.lastName;
+        //   }
+        // },
+
+        // //一般方法
+        // methods: {
+        //   fullName: function() {
+        //     console.log("计算了一次");
+        //     return this.firstName + " " + this.lastName;
+        //   }
+        // },
+
+        //计算属性方法
+        computed: {
+          fullName: function() {
+            console.log("计算了一次");
+            return this.firstName + " " + this.lastName;
+          }
+        }
+      })
+    </script>
+</body>
+</html>
