@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{fullName}}
+    {{age}}
+  </div>
+    <script>
+      //控制台输入vm.fullName = "Kitty Boy"
+      //此时将自动调用computed中fullName的set方法
+      //这个set方法导致firstName和lastName改变
+      //computed监测到改变
+      //get方法输出Kitty Boy
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          firstName: "Dell",
+          lastName: "Lee"
+        },
+        computed: {
+          fullName: {
+            get: function() {
+              return this.firstName + " " + this.lastName;
+            },
+            set: function(value) {
+              var arr = value.split(" ");
+              this.firstName = arr[0];
+              this.lastName = arr[1];
+            }
+          }
+        }
+      })
+    </script>
+</body>
+</html>
