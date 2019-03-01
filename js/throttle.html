@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>throttle</title>
+</head>
+<body>
+    <div style="height:5000px">
+        <div id="demo" style="position:fixed;"></div>
+    </div>
+    <script>
+    var COUNT = 0;
+    var demo = document.getElementById('demo');
+    function testFn() {demo.innerHTML += 'testFN 被调用了 ' + ++COUNT + '次<br>';}
+ 
+    var throttle = function (fn, delay) {
+        var timer = null;
+ 
+        return function () {
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                fn();
+            }, delay);
+        }
+    }
+    window.onscroll = throttle(testFn, 1000);
+    </script>
+</body>
+</html>
+
+//https://blog.csdn.net/u013510614/article/details/51920770
