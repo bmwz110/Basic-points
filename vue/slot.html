@@ -1,4 +1,4 @@
-
+<!--插槽的使用-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,3 +35,46 @@
 </html>
 
 
+<!--作用域插槽-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <!--
+    什么时候使用“作用域插槽”？：当子组件作循环，其某一部分的DOM结构应该由外部传递进来的时候。
+  -->
+  <div id="root">
+    <child>
+      <!--父组件的插槽如果想要使用子组件传递的数据，必须创建template作用域插槽, 同时通过slot-scope接收数据-->
+      <template slot-scope="props">
+        <h1>{{props.item}}</h1>
+      </template>
+    </child>
+  </div>
+
+  <script>
+    Vue.component('child', {
+      data: function() {
+        return {
+          list: [1, 2, 3, 4]
+        }
+      },
+      template: `<div>
+                  <ul>
+                    <slot 
+                      v-for="item of list"
+                      :item=item></slot>
+                  </ul>
+                </div>`
+    })
+
+    var vm = new Vue({
+      el: '#root'
+    })
+  </script>
+</body>
+</html>
