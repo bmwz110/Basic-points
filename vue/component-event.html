@@ -1,0 +1,42 @@
+<!--ref的使用-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!--
+      此处的@click的click只是与原生事件同名，实际却是自定义事件。
+      若想生效：
+      方法1: 需要在子组件中的template绑定原生事件后，通过原生事件触发名为‘click’的自定义事件（如下）
+      方法2(推荐): 写成@click.native
+    -->
+    <child @click="handleClick"></child>
+  </div>
+
+  <script>
+    Vue.component('child', {
+      template: '<div @click="handleChildClick">Child</div>',
+      methods: {
+        handleChildClick: function() {
+          this.$emit('click')
+        }
+      }
+    })
+
+    var vm = new Vue({
+      el: '#root',
+      methods: {
+        handleClick: function() {
+          alert('clicked')
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+
+
