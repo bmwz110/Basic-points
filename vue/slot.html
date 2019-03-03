@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!--
+      slot="插槽名"
+      组件中的slot通过name="插槽名"对应使用
+    -->
+    <body-content>
+      <div slot='header'>头部信息</div>
+      <div slot='footer'>底部信息</div>
+    </body-content>
+  </div>
+
+  <script>
+    Vue.component('body-content', {
+      template: `<div>
+                  <slot name='header'>(当name为header的插槽未被使用时出现的信息)</slot>
+                  <div>内容</div>
+                  <slot name='footer'></slot>
+                </div>`
+    })
+
+    var vm = new Vue({
+      el: '#root'
+    })
+  </script>
+</body>
+</html>
+
+
