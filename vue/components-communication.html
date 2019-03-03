@@ -77,4 +77,59 @@
 </html>
 
 <!--非父子关系的组件通信-->
-vuex
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <!--
+    研究目的：非父子组件传值
+    实现方法：Vuex、总线机制(Bus/发布订阅模式/观察者模式)
+
+    本例实现的功能：点击Dell，则Dell变成Lee；点击Lee，则Lee变成Dell
+  -->
+  <div id="root">
+    <child content="Dell"></child>
+    <child content="Lee"></child>
+  </div>
+
+  <script>
+    //创建bus(总线)
+    Vue.prototype.bus = new Vue() 
+
+    Vue.component('child', {
+      //子组件不能直接修改父组件传来的值，所以另存为selfContent
+      data: function() {
+        return {
+          selfContent: this.content
+        }
+      },
+      props: {
+        content: String
+      },
+      template: '<div @click="handleClick">{{selfContent}}</div>',
+      methods: {
+        handleClick: function() {
+          this.bus.$emit('change', this.selfContent)
+        }
+      },
+      mounted: function() {
+        var this_ = this
+        this.bus.$on('change', function(msg) {
+          this_.selfContent = msg
+        })
+      }
+    })
+
+    var vm = new Vue({
+      el: '#root'
+    })
+  </script>
+</body>
+</html>
+
+
+
