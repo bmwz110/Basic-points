@@ -1,0 +1,26 @@
+<!-- 使用padding-bottom设置图片高宽比 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <style>
+      #wrapper {
+        width: 500px;
+      }
+      #subWrapper {
+        /* padding:百分数 是相对于父元素的!宽度! */
+        padding-bottom: 15%;
+        background-color: red;
+        background: url(http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20192/e1abd1a9cfc4330d4d8794285350b4dd.jpg_750x200_a18c9dff.jpg)  no-repeat;
+        /* 当使用cover时，图片将被缩放至恰好能覆盖容器，并且图片被隐藏的部分最少 */
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="subWrapper"></div>
+    </div>
+  </body>
+</html>
