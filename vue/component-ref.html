@@ -8,6 +8,10 @@
 </head>
 <body>
   <div id="root">
+     <!-- 
+        在元素上使用ref，使用this.$refs.ref, 实际获得的就是这个dom元素
+        在子组件上设置ref，使用this.$refs.ref, 实际是获得的是该子组件的引用
+     -->
      <counter ref="one" @change="handleChange"></counter>
      <counter ref="two" @change="handleChange"></counter>
      <div>{{total}}</div> 
