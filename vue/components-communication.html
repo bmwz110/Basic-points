@@ -1,38 +1,53 @@
-<!--
-  单向数据流：
-      父组件可以向子组件传递参数，但子组件不能直接修改父组件传递过来的参数（会warning）;
-      这样设计是因为，如果父组件传给子组件的是一个引用类型，例如对象，子组件对其进行直接修改会影响其他子组件;
-      解决方法是在子组件里创建新变量作为副本，对新变量进行更改。
+<!-- 父组件向子组件传值 -->
+<!-- 
+  方法：
+    在父组件中设置属性，然后子组件通过props接受
 -->
-<!--父组件→→→子组件通信，即子组件引用父组件数据-->
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Vue test</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script src="./vue.js"></script>
+  </head>
+
+  <body>
     <div id="app">
-        <!--无：时，引号中传递的恒为字符串-->
-        <son :message="msg"></son>
+      <!-- 
+        不加冒号时，count="0"传递给子组件的是字符串
+        加冒号时，count="1"传递给子组件的是数字  
+      -->
+      <counter :count="0"></counter>
+      <counter :count="1"></counter>
     </div>
-
     <script>
-        Vue.component("son",{
-            props:["message"],   /*直接使用props选项声明想要获得的数据即可*/
-            template:`<div>{{message}}</div>`
-        });
+      var counter = {
+        props: ['count'],
+        template: '<div @click="handleClick">{{count}}</div>',
+        methods: {
+//       此时，点击数字会warning，因为子组件不能直接修改父组件传递过来的数据
+//       概念---单向数据流：
+//       父组件可以向子组件传递参数，但子组件不能直接修改父组件传递过来的参数（会warning）;
+//       这样设计是因为，如果父组件传给子组件的是一个引用类型，例如对象，子组件对其进行直接修改会影响其他子组件;
+//       解决方法是在子组件里创建新变量作为副本，对新变量进行更改。
+          handleClick () {
+            this.count ++
+          }
+        }
+      }
 
-        var app = new Vue({
-            el: "#app",
-            data: {
-                msg: "This is father's data."
-            }
-        });
+      var vm = new Vue({
+        el: '#app',
+        components: {
+          counter
+        }
+      })
     </script>
-</body>
+  </body>
 </html>
+
+
+
 
 <!--子组件→→→父组件通信，即父组件引用子组件数据-->
 <!DOCTYPE html>
