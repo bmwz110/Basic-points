@@ -26,12 +26,22 @@
 //        此处接受的props可以写成如下形式进行参数校验：
 //        props: {
 //          count: [Number, String],  检验是否为Number或String类型，若是，则接受
-            // 或写为对象形式:
-//          count: {
-//            type: Number
-//            required: true   必须存在一个count从父组件传入此子组件，否则报错
+              // 或写为对象形式:
+//            count: {
+//              type: Number
+//              required: true   必须存在一个count从父组件传入此子组件，否则报错
+                  // 或写为 
+//                required: false
+//                default: 默认值    不要求一定有传入值，当未传入值时使用默认值
+                  // 或写为
+//                validator (value) {
+//                  return value.length > 5   确保传入的值的长度大于5
+//                }
 //          }
 //        }
+//      在template上绑定的事件属于原生事件，@click就是点击事件
+//      而在组件使用处<counter @click="xxx"></counter>上绑定的事件属于自定义事件，@click必须为子组件中$emit传出的自定义事件
+//      想要在使用处绑定原生事件，需要加上.native，<counter @click.native="xxx"></counter>
         template: '<div @click="handleClick">{{count}}</div>',
         methods: {
 //        此时，点击数字会warning，因为子组件不能直接修改父组件传递过来的数据
@@ -142,6 +152,12 @@
 
 
 <!--非父子关系的组件通信-->
+<!-- 
+  方法：
+    总线机制(Bus/发布订阅模式)、观察者模式、Vuex
+    总线机制是向vue的prototype上注册一个bus总线，作为发布订阅的中心，A组件通过.bus.$emit向发布订阅中心传递值，B组件通过.bus.$on从发布订阅中心接收值
+    与其相似的是观察者模式，观察者模式与bus总线机制最大的不同就是它是注册到具体目标里的，订阅者与发布者存在依赖关系。
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,12 +166,6 @@
     <script src="vue.js"></script>
 </head>
 <body>
-  <!--
-    研究目的：非父子组件传值
-    实现方法：Vuex、总线机制(Bus/发布订阅模式/观察者模式)
-
-    本例实现的功能：点击Dell，则Dell变成Lee；点击Lee，则Lee变成Dell
-  -->
   <div id="root">
     <child content="Dell"></child>
     <child content="Lee"></child>
