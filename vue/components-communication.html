@@ -25,7 +25,12 @@
         props: ['count'],
 //        此处接受的props可以写成如下形式进行参数校验：
 //        props: {
-//          count: [Number, String]  检验是否为Number或String类型，若是，则接受
+//          count: [Number, String],  检验是否为Number或String类型，若是，则接受
+            // 或写为对象形式:
+//          count: {
+//            type: Number
+//            required: true   必须存在一个count从父组件传入此子组件，否则报错
+//          }
 //        }
         template: '<div @click="handleClick">{{count}}</div>',
         methods: {
