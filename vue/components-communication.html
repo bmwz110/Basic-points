@@ -75,47 +75,62 @@
 
 
 
-<!--子组件→→→父组件通信，即父组件引用子组件数据-->
+<!-- 子组件向父组件传值 -->
+<!-- 
+  方法：
+    在子组件中设置this.$emit('事件名', 值)来向父组件传递事件和值
+    父组件通过@事件名 来进行监听，获取值
+-->
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Vue test</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script src="./vue.js"></script>
+  </head>
+
+  <body>
     <div id="app">
-        <son @connect="say"></son>
+      <counter :count="2" @change="handleIncrease"></counter>
+      <counter :count="3" @change="handleIncrease"></counter>
+      <div>{{total}}</div>
     </div>
-
     <script>
-        Vue.component("son",{
-            template:`
-                <button @click="send">点击</button>
-                `,
-            data(){   /*子组件的data需以对象形式传递，否则报错*/
-                return{
-                    msg:"This is son's data."
-                }
-            },
-            methods:{
-                send(){
-                    this.$emit("connect",this.msg);   /*使用$emit触发事件*/
-                }
-            }
-        });
+      var counter = {
+        props: ['count'],
+        data () {
+          return {
+            number: this.count
+          }
+        },
+        template: '<div @click="handleClick">{{number}}</div>',
+        methods: {
+          handleClick () {
+            this.number ++
+            this.$emit('change', 1)
+          }
+        }
+      }
 
-        var app = new Vue({
-            el: "#app",
-            methods: {
-                say(msg){
-                    console.log(msg);
-                }
-            }
-        });
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          total: 5
+        },
+        components: {
+          counter
+        },
+        methods: {
+          handleIncrease (step) {
+            this.total += step
+          }
+        }
+      })
     </script>
-</body>
+  </body>
 </html>
+
+
 
 <!--非父子关系的组件通信-->
 <!DOCTYPE html>
