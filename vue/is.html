@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="./vue.js"></script>
+    <title>test</title>
+  </head>
+
+  <body>
+    <!--
+      select下只允许option，如果直接使用row组件，则会产生渲染错误
+      解决方法是使用is属性 
+    -->
+    <div id="app">
+      <table>
+        <select>
+          <option is="row"></option>
+          <option is="row"></option>
+          <option is="row"></option>
+        </select>
+      </table>
+    </div>
+
+    <script>
+      Vue.component('row', {
+        template: '<tr><td>Hello</td></tr>'
+      })
+
+      var vm = new Vue({
+        el: '#app'
+      })
+    </script>
+  </body>
+</html>
