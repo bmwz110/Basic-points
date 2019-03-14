@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="./vue.js"></script>
+    <title>test</title>
+  </head>
+
+  <body>
+    <!-- 
+      在用户名框中输入123,然后在控制台将vm.show=true,此时显示邮箱名：123
+      因为vue会尽量复用dom信息，导致input内容未清空
+      解决方法是为input增加key属性
+
+      当加入key后，对用户名输入123，然后设置vm.show=true后再设置vm.show=false
+      则原先用户名的input也被清空，不会被缓存
+     -->
+    <div id="app">
+      <div v-if="show">
+        用户名: <input key="a" />
+      </div>
+      <div v-else>
+        邮箱名: <input key="b" />
+      </div>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          show: false
+        }
+      })
+    </script>
+  </body>
+</html>
