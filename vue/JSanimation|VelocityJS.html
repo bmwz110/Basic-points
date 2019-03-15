@@ -1,0 +1,69 @@
+<!-- JS动画效果|Velocity.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script src="./vue.js"></script>
+    <script src="./velocity.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 
+        元素出场：
+        before-enter: 元素即将出场时触发
+        enter: 事件在before-enter完毕后执行
+        after-enter: 再位于其后执行
+
+        元素退场：
+        before-leave: 元素即将退场时触发
+        leave: 事件在before-leave完毕后执行
+        after-leave: 再位于其后执行
+       -->
+      <transition
+        name="fade"
+        @before-enter="handleBeforeEnter"
+        @enter="handleEnter"
+        @after-enter="handleAfterEnter"
+        >
+        <div v-show="show">Hello world</div>
+      </transition>
+      <button @click="handleClick">切换</button>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: '#root',
+        data: {
+          show: true
+        },
+        methods: {
+          handleClick () {
+            this.show = !this.show
+          },
+          // 动画钩子
+          handleBeforeEnter (el) {
+            el.style.color = 'red'
+          },
+          handleEnter (el, done) {
+            setTimeout(() => {
+              el.style.color = 'green'
+            }, 2000)
+            setTimeout(() => {
+              done()
+            }, 4000)
+          },
+          handleAfterEnter (el) {
+            el.style.color = '#000'
+          }
+          // 使用velocity.js使文字在2秒内opacity从0到1
+          // handleEnter (el, done) {
+          //   Velocity(el, {opacity: 1}, {duration: 2000, complete: done})
+          // }
+        }
+      })
+    </script>
+  </body>
+</html>
