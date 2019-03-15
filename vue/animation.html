@@ -1,4 +1,65 @@
-<!-- JS动画效果|Velocity.js|Vue动画效果的封装 -->
+<!-- 
+     动画效果
+     Velocity.js的使用
+     Vue动画效果的封装 
+-->
+
+
+<!-- 动画效果 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script src="./vue.js"></script>
+    <style>
+      /* 
+        第一帧时存在v-enter，opacity为0，第二帧时v-enter取消，opacity变为1
+        v-enter-active持续整个动画周期，对其设置过度属性transition
+        transition检测到opacity变化，令其变化时长为3秒
+        详情见文稿-前端学习图表-transition动画效果流程
+       */
+      .v-enter {
+        opacity: 0;
+      }
+      .v-enter-active {
+        transition: opacity 3s;
+      }
+      .v-leave-to {
+        opacity: 0;
+      }
+      .v-leave-active {
+        transition: opacity 3s;
+      }
+    </style>
+  </head>
+  <body>
+    <fiv id="root">
+      <transition>
+        <div v-if="show">Hello world</div>
+      </transition>
+      <button @click="handleClick">切换</button>
+    </fiv>
+
+    <script>
+      var vm = new Vue({
+        el: '#root',
+        data: {
+          show: true
+        },
+        methods: {
+          handleClick () {
+            this.show = !this.show
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
+
+
+
+<!-- Velocity.js的使用 -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
