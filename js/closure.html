@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+  <script>
+    // 闭包的应用场景
+
+    // 1. 函数作为返回值
+    function F1 () {
+      var a = 100
+      return function () {
+        console.log(a)
+      }
+    }
+    var f1 = F1()   // f1得到一个函数
+    var a = 200
+    f1()   // 100
+    // 因为一个函数的父级作用域是它定义时候的作用域，而不是执行时的作用域
+    // 所以 f1() 的父级作用域是 F1(){}, 自由变量 a 沿着父级作用域一层层找，所以找到 a=100
+
+    // 1.1 实际应用案例
+    // 判断一个数字是否是第一次调用，若是，返回true，反之返回false
+    // 优势：在 isFirstLoad 函数外面，根本不可能修改 _list 的值
+    function isFirstLoad () {
+      var _list = []
+      return function (id) {
+        if (_list.indexOf(id) >= 0) {
+          return false
+        } else {
+          _list.push(id)
+          return true
+        }
+      }
+    }
+    var  firstLoad = isFirstLoad()
+    firstLoad(10)   // true
+    firstLoad(10)   // false
+
+    // 2. 函数作为参数来传递
+    function F1 () {
+      var a = 100
+      return function () {
+        console.log(a)
+      }
+    }
+    var f1 = F1()
+    function F2(fn) {
+      var a = 200
+      fn()
+    }
+    F2(f1)   // 100
+  </script>
+</body>
+</html>
+
+
