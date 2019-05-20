@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div>
+    <input type="text" name="" id="txt-title">
+    <button id="btn-submit">submit</button>
+  </div>
+  <div>
+    <ul id="ul-list"></ul>
+  </div>
+
+  <!-- jQuery实现 -->
+  <script type="text/javascript">
+    var $txtTitle = $('#txt-title')
+    var $ulList = $('#ul-list')
+    var $btnSubmit = $('#btn-submit')
+    $btnSubmit.click(function () {
+      var title = $txtTitle.val()
+      if (!title) {
+        return
+      }   // 如果输入框为空，则点击无响应
+      // 数据和视图没有分离，混在了一起，如下
+      var $li = $('<li>' + title + '</li>')
+      $ulList.append($li)
+      $txtTitle.val('')
+    })
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input v-model="title">
+      <button v-on:click="add">submit</button>
+    </div>
+    <div>
+      <ul>
+        <li v-for="item in list">{{item}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Vue实现 -->
+  <!-- 数据与视图分离 - 解耦（开放封闭原则） -->
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        title: '',
+        list: []
+      },
+      methods: {
+        add: function () {
+          this.list.push(this.title)
+          this.title = ''
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+
