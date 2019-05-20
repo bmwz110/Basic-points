@@ -1,0 +1,31 @@
+<!-- 
+  因为fragment存在于内存中，并不在DOM树中
+  所以将子元素插入到文档片段时不会引起页面回流(reflow)(对元素位置和几何上的计算)
+  因此，使用文档片段document fragments 通常会起到优化性能的作用。 
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>createDocumentFragment</title>
+  </head>
+  <body>
+
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+    </ul>
+    <script>
+      var d = document.createDocumentFragment();
+      // ⚠️注意：d.appendChild(xxx) 会将xxx从原有的 DOM 树中删去
+      d.appendChild(document.getElementsByTagName("LI")[0]);
+      // 此时 d 中为 ...<li>Coffee</li>...
+      d.childNodes[0].childNodes[0].nodeValue="Milk";
+      document.getElementsByTagName("UL")[0].appendChild(d);
+      // Tea 
+      // Milk
+    </script>
+
+  </body>
+</html>
+

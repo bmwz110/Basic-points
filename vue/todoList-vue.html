@@ -8,6 +8,8 @@
 <body>
   <div id="app">
     <div>
+      <!-- v-model是双向绑定，input框输入内容会改变data.title，同时，data.title的改变也会影响input -->
+      <!-- v-bind是单向绑定，是将data.title的内容赋给input，一般用于元素的属性绑定 -->
       <input v-model="title">
       <button v-on:click="add">submit</button>
     </div>
