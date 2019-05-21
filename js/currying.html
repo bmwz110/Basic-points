@@ -1,0 +1,55 @@
+<!-- 函数柯里化 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+  <script>
+    // 普通的add函数
+    function add(x, y) {
+        return x + y
+    }
+    // Currying后
+    function curryingAdd(x) {
+        return function (y) {
+            return x + y
+        }
+    }
+    add(1, 2)           // 3
+    curryingAdd(1)(2)   // 3
+
+    //***********************************************************
+    //***********************************************************
+    //***********************************************************
+
+    // 正常正则验证字符串 reg.test(txt)
+    function check(reg, txt) {
+        return reg.test(txt)
+    }
+
+    check(/\d+/g, 'test')       //false
+    check(/[a-z]+/g, 'test')    //true
+
+    //如果我有很多地方都要校验是否有数字，其实就是需要将第一个参数reg进行复用
+    //这样别的地方就能够直接调用hasNumber，hasLetter等函数，让参数能够复用，调用起来也更方便
+    // Currying后
+    function curryingCheck(reg) {
+        return function(txt) {
+            return reg.test(txt)
+        }
+    }
+
+    var hasNumber = curryingCheck(/\d+/g)
+    var hasLetter = curryingCheck(/[a-z]+/g)
+
+    hasNumber('test1')      // true
+    hasNumber('testtest')   // false
+    hasLetter('21212')      // false
+  </script>
+</body>
+</html>
+
+

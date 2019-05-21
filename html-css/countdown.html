@@ -1,0 +1,49 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,minimum-scale=1.0 maximum-scale=1.0 user-scalable=no' />
+	<title>获取短信验证码倒计时</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<style type="text/css">
+ 
+		.btn { 
+		    border: 0;
+		    width:120px;
+		    height:40px;  
+		    line-height: 40px; 
+		    float:left;
+		    color: white;
+		    background-color: #08c;
+		    border-radius: 20px;
+		    text-align: center;
+		    text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" class="btn" id="code" value="获取验证码" onclick="codeButton()">
+</body>
+<script type="text/javascript">
+	function codeButton () {
+		var code = $("#code");
+		code.attr("disabled", "disabled");
+
+		setTimeout(function () {
+			code.css("opacity", "0.8");
+		},1000)
+
+		var time = 60;
+
+		var set = setInterval(function () {
+			code.val("("+--time+")秒后重新获取");
+		}, 1000);
+
+		setTimeout(function () {
+			code.attr("disabled", false).val("重新获取验证码");
+			clearInterval(set);
+		}, 60000);
+	}
+</script>
+</html>
