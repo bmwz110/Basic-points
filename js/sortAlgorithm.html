@@ -28,37 +28,29 @@
             // 选择排序
             function selectionSort(arr) {
               var len = arr.length;
-              var minIndex, temp;
-              for (var i = 0; i < len - 1; i++) {
-                  minIndex = i;
-                  for (var j = i + 1; j < len; j++) {
-                      if (arr[j] < arr[minIndex]) {     // 寻找最小的数
-                          minIndex = j;                 // 将最小数的索引保存
-                      }
+              for (let i = 0; i < len; i++) {
+                let min = arr[i]
+                for (let j = i + 1; j < len; j++) {
+                  if (arr[j] < min) {
+                    let tmp = min
+                    min = arr[j]
+                    arr[j] = tmp
                   }
-                  temp = arr[i];
-                  arr[i] = arr[minIndex];
-                  arr[minIndex] = temp;
+                }
               }
-              return arr;
+              return arr
             }
 
             // 冒泡排序
             function bubbleSort (arr) {
-              var max = arr.length - 1;
-              for (var j = 0; j < max; j++) {
-                // 声明一个变量，作为标志位
-                var done = true;
-                for (var i = 0; i < max - j; i++) {
-                  if (arr[i] > arr[i + 1]) {
-                    var temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
-                    done = false;
+              var len = arr.length - 1;
+              for (let i = len; i > 0, tmp; i --) {
+                for (let j = 0; j < i; j++) {
+                  if (tmp > arr[j + 1]) {
+                    tmp = arr[j]
+                    arr[j] = arr[j + 1]
+                    arr[j + 1] = tmp
                   }
-                }
-                if (done) {
-                  break;
                 }
               }
               return arr;
