@@ -89,7 +89,7 @@
             }   
 
             function mergeSort(array){  
-              if (array.length == 1) return array;  
+              if (array.length === 1) return array;  
               var middle = Math.floor(array.length / 2);       //求出中点  
               var left = array.slice(0, middle);               //分割数组  
               var right = array.slice(middle);  
