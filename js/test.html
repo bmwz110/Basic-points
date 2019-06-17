@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sort</title>
+    </head>
+    <body>
+        <script>
+            arr1 = [3, 2, 4, 5, 1]
+            var selSort = arr => {
+              let len = arr.length
+              for (let i = 0; i < len; i++) {
+                for (let j = i+1; j < len; j++) {
+                  if (arr[j] < arr[i]) {
+                    let tmp = arr[i]
+                    arr[i] = arr[j]
+                    arr[j] = tmp
+                  }
+                }
+              }
+              return arr
+            }
+            console.log(selSort(arr1))
+        </script>
+    </body>
+</html>
