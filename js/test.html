@@ -7,26 +7,26 @@
     </head>
     <body>
         <script>
-            arr1 = [3, 2, 4, 5, 1]
-            function merge(leftArr, rightArr){  
-              var result = [];  
-              while (leftArr.length > 0 && rightArr.length > 0){  
-                if (leftArr[0] < rightArr[0])  
-                  result.push(leftArr.shift()); //把最小的最先取出，放到结果集中   
-                else   
-                  result.push(rightArr.shift());  
-              }   
-              return result.concat(leftArr).concat(rightArr);  //剩下的就是合并，这样就排好序了  
-            }   
+          function test(resolve, reject) {
+            var timeOut = Math.random() * 2;
+            setTimeout(function () {
+              if (timeOut > 1) {
+                console.log('call resolve()...');
+                resolve('200 OK');
+              } else {
+                console.log('call reject()...');
+                reject('timeout in ' + timeOut + ' seconds.');
+              }
+            }, timeOut * 1000);
+          }
 
-            function mergeSort(array){  
-              if (array.length === 1) return array;  
-              var middle = Math.floor(array.length / 2);       //求出中点  
-              var left = array.slice(0, middle);               //分割数组  
-              var right = array.slice(middle);  
-              return merge(mergeSort(left), mergeSort(right)); //递归合并与排序  
-            } 
-            console.log(mergeSort(arr1))
+          new Promise(test).then(function(result) {
+            setTimeout(function() {
+              console.log('成功：' + result)
+            }, 2000)
+          }).catch(function (reason) {
+              console.log('失败：' + reason);
+          })
         </script>
     </body>
 </html>
