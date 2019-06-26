@@ -7,26 +7,17 @@
     </head>
     <body>
         <script>
-          function test(resolve, reject) {
-            var timeOut = Math.random() * 2;
-            setTimeout(function () {
-              if (timeOut > 1) {
-                console.log('call resolve()...');
-                resolve('200 OK');
-              } else {
-                console.log('call reject()...');
-                reject('timeout in ' + timeOut + ' seconds.');
-              }
-            }, timeOut * 1000);
+          let h1 = 100
+          let sum = 0
+          let heightCompute = function (h) {
+            for (let i = 1; i <= 9999; i++) {
+              sum = sum + h*0.63
+              h = h*0.63
+            }
+            return sum
           }
-
-          new Promise(test).then(function(result) {
-            setTimeout(function() {
-              console.log('成功：' + result)
-            }, 2000)
-          }).catch(function (reason) {
-              console.log('失败：' + reason);
-          })
+          heightCompute(h1)
+          console.log(sum)
         </script>
     </body>
 </html>
