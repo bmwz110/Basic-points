@@ -12,8 +12,7 @@
         height: 300px
       }
 
-      /* 方法 1 : absolute / relative + calc */
-      /*       
+      /* 方法 1 : absolute / relative + calc */ */
       .subWrapper {
         width: 100px;
         height: 100px;
@@ -21,10 +20,9 @@
         position: relative;
         top: calc(50% - 50px);
         left: calc(50% - 50px);
-      } */
+      }
 
       /* 方法 2 : absolute + margin: auto */
-      /*       
       .subWrapper {
         width: 100px;
         height: 100px;
@@ -35,10 +33,9 @@
         bottom: 0;
         right: 0;
         margin: auto
-      } */
+      }
       
       /* 方法 3 : absolute + transform */
-      /* 
       .subWrapper {
         width: 100px;
         height: 100px;
@@ -47,19 +44,18 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%)
-      } */
+      }
 
       /* 方法 4 : flex  */
       .wrapper {
         display: flex;
-        align-items: center
+        align-items: center;
+        justify-content: center
       }
       .subWrapper {
         width: 100px;
         height: 100px;
         background: green;
-        display: flex;
-        justify-content: center
       }
     </style>
   </head>
