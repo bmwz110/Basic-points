@@ -1,0 +1,39 @@
+<!-- 垂直 + 水平 居中 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="subWrapper"></div>
+    </div>
+    <script>
+      // 对于箭头函数来说，this在定义时确定
+      // 箭头函数的 this 会直接绑定到它父级的执行上下文
+      let a = {
+        b: 3,
+        c: function () {
+          return () => {
+            console.log(this)
+          }
+        }
+      }
+      a.c()()   // a{b:3, c:f}，因为此时箭头函数的 this 指向了其父级 c: function的执行上下文 a对象
+
+
+      let a = {
+        b: 3,
+        c: function () {
+          return function() {
+            return () => {
+              console.log(this)
+            }
+          }
+        }
+      }
+      a.c()()()   // window，因为此时箭头函数的 this 指向定义该箭头函数的匿名函数function，而匿名函数是指向全局的
+    </script>
+  </body>
+</html>

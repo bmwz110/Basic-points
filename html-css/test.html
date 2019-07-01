@@ -28,5 +28,18 @@
     <div class="wrapper">
       <div class="subWrapper"></div>
     </div>
+    <script>
+      let a = {
+        b: 3,
+        c: function () {
+          return function () {
+            return () => {
+              console.log(this)
+            }
+          }
+        }
+      }
+      a.c()()()
+    </script>
   </body>
 </html>
