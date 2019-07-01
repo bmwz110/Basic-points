@@ -10,43 +10,55 @@
         <script>
             const Numbers = [375, 200, 3.14, 7, 13, 852];
 
-            //.forEach()
-            //此处不能使用item = () => {}，这样相当于把函数赋给item
-            //此处的item => {}是作为回调函数赋给forEach方法（对象中的函数叫做方法）
+            // .forEach()
+            // 此处不能使用item = () => {}，这样相当于把函数赋给item
+            // 此处的item => {}是作为回调函数赋给forEach方法（对象中的函数叫做方法）
             Numbers.forEach(item => {
                 console.log(item);
             });
 
-            //.map()
-            //the major difference between .forEach() and .map() is that .map() returns a new array.
+            // .map()
+            // the major difference between .forEach() and .map() is that .map() returns a new array.
             const newNumbers1 = Numbers.map(number => {
                 return number*10;
             });
-            //以下这种写法与上面这种等价
+            // 以下这种写法与上面这种等价
             const newNumbers11 = Numbers.map(number => number*10);
             console.log(newNumbers1);
 
-            //.filter()
-            //Like .map(), .filter() returns a new array. 
-            //However, .filter() returns an array of elements after filtering out certain elements from the original array.
+            // .filter()
+            // Like .map(), .filter() returns a new array. 
+            // However, .filter() returns an array of elements after filtering out certain elements from the original array.
             const newNumbers2 = Numbers.filter(number => {
                 return number > 100;
             });
             console.log(newNumbers2);
 
-            //.findIndex()
-            //输出第一个满足要求的数组项的索引
+            // .findIndex()
+            // 输出第一个满足要求的数组项的索引
             const index = Numbers.findIndex(item => {
                 return item < 300;
             });
             console.log(index);
 
-            //.reduce()
-            //累加
+            // .reduce()
+            // 累加
             const sum = Numbers.reduce((accumulator,currentValue) => {
                 return accumulator + currentValue;
             },1000000);
             console.log(sum);
+
+            // for in
+            // for in 输出的是索引
+            for (i in Numbers) {
+                console.log(i)
+            }   // 0 1 2 3 4 5
+
+            // for of
+            // for of 输出的是值
+            for (i of Numbers) {
+                console.log(i)
+            }
         </script>
     </body>
 </html>

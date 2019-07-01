@@ -7,17 +7,10 @@
     </head>
     <body>
         <script>
-          let h1 = 100
-          let sum = 0
-          let heightCompute = function (h) {
-            for (let i = 1; i <= 9999; i++) {
-              sum = sum + h*0.63
-              h = h*0.63
+          const Numbers = [375, 200, 3.14, 7, 13, 852];
+          for (i of Numbers) {
+                console.log(i)
             }
-            return sum
-          }
-          heightCompute(h1)
-          console.log(sum)
         </script>
     </body>
 </html>
