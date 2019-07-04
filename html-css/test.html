@@ -4,42 +4,23 @@
   <head>
     <meta charset="utf-8">
     <title>test</title>
-    <style>
-      .wrapper {
-        position: relative;
-        border: 1px solid red;
-        width: 300px;
-        height: 300px
-      }
-      .wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center
-      }
-      .subWrapper {
-        width: 100px;
-        height: 100px;
-        background: green;
-        display: flex;
-      }
-    </style>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="subWrapper"></div>
-    </div>
+    <ul id="menu"></ul>
+    <button id="btn">Btn</button>
     <script>
-      let a = {
-        b: 3,
-        c: function () {
-          return function () {
-            return () => {
-              console.log(this)
-            }
-          }
-        }
+      let btn = document.getElementById('btn')
+      let ul = document.getElementsByTagName("ul")[0]
+      let i = 0
+      btn.addEventListener('click', function() {
+        let li = document.createElement("li")
+        li.innerHTML = `<li onclick="clicked(event)">${++i}</li>`
+        ul.appendChild(li)
+      })
+      
+      function clicked(event) {
+        alert(event.target.innerHTML)
       }
-      a.c()()()
     </script>
   </body>
 </html>

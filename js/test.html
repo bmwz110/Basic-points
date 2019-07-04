@@ -4,13 +4,27 @@
     <head>
         <meta charset="utf-8">
         <title>Sort</title>
+        <style>
+            #div1 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                float: left
+            }
+            #div2 {
+                width: 100px;
+                height: 100px;
+                background-color: green;
+                position: relative;
+                left: 200px
+            }
+        </style>
     </head>
     <body>
+        <div id="div1"></div>
+        <div id="div2"></div>
         <script>
-          const Numbers = [375, 200, 3.14, 7, 13, 852];
-          for (i of Numbers) {
-                console.log(i)
-            }
+          console.log(Object.is(+0, -0))
         </script>
     </body>
 </html>
