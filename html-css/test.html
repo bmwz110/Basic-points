@@ -9,18 +9,18 @@
     <ul id="menu"></ul>
     <button id="btn">Btn</button>
     <script>
-      let btn = document.getElementById('btn')
-      let ul = document.getElementsByTagName("ul")[0]
-      let i = 0
-      btn.addEventListener('click', function() {
-        let li = document.createElement("li")
-        li.innerHTML = `<li onclick="clicked(event)">${++i}</li>`
-        ul.appendChild(li)
-      })
-      
-      function clicked(event) {
-        alert(event.target.innerHTML)
+      let a = [1, [2, 3], 4];
+
+      const copy = (obj) => {
+        let _obj = JSON.stringify(obj)
+        let newObj = JSON.parse(_obj)
+        return newObj
       }
+
+      let b = copy(a);  
+      a[1][0] = 3;
+      console.log(a);  // [1, [3, 3], 4]
+      console.log(b);  // [1, [2, 3], 4]
     </script>
   </body>
 </html>
