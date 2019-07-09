@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+      <script>
+        // 链式赋值中，点运算符的优先级最高
+        // 可以认为：
+        // 机理上，o1是一个指针，对指针的属性修改，体现在其所指的对象上
+        var o1 = {x:1 }
+        o2 = o1
+        o1.a = o1 = {x: 2}
+        console.log(o1)   // {x: 2}
+        console.log(o1.a)   // undefined
+        console.log(o2)   // {x: 1, a:{...}}
+
+        // array对象引用
+        a2 = [1, 2]
+        a2[1] = a2 = [3] 
+        console.log(a2)   // [3]
+        console.log(a2[1])   // undefined
+      </script>
+    </body>
+</html>
