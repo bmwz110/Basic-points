@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'freebooter_scriptregular';
+  src: url('fonts/freebooterscript-webfont.woff2') format('woff2'),
+       url('fonts/freebooterscript-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
