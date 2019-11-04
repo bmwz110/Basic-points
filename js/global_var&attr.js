@@ -12,3 +12,5 @@ function foo() {
 }
 
 foo();
+
+// 注意： let a = b = 2 会被解析为 let a = (b = 2)，此时认为创建了一个global variable：b
