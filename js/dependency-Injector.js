@@ -1,6 +1,6 @@
 // 依赖注入基本原理
 
-// 容器: 提供服务
+// 容器/服务提供商: 提供服务
 var services = { 
   A: () => {console.log(1)}, 
   B: () => {console.log(2)},
