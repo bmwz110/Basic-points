@@ -41,3 +41,4 @@ setFuncParams = function (params) {
 // 实例化Service并调用方法 
 var test = Activitor(Service); 
 test();   //1 2
+
