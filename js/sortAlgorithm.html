@@ -9,6 +9,7 @@
             arr = [3, 2, 3, 7, 9, 5, 1, 8]
 
             // 快速排序
+            // 选取一个基准数后，小于它的放左边，大于它的放右边，再分别对左右再次应用此规则，嵌套循环至剩一个元素
             var quickSort = function(arr) {
               if (arr.length <= 1) { return arr; }
               var pivotIndex = Math.floor(arr.length / 2);   //基准位置（理论上可任意选取）
