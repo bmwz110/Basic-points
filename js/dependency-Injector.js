@@ -9,8 +9,8 @@ var services = {
 
 // 待注入函数 
 function Service(A, B) { 
-  A();
-  B();
+  A(); 
+  B(); 
 }
 
 // 注射器 
